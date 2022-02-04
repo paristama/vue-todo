@@ -1,7 +1,14 @@
 <template>
   <li class="py-3 flex">
     <div class="ml-3 w-full flex justify-between items-center">
-      <p class="text-sm flex-1 cursor-pointer">{{ todo.activity }}</p>
+      <p
+        :class="[
+          'text-sm flex-1 cursor-pointer',
+          { 'line-through': todo.isDone },
+        ]"
+      >
+        {{ todo.activity }}
+      </p>
       <button
         class="text-gray-500 p-1.5 cursor-pointer rounded-full hover:bg-red-300 hover:text-red-500"
       >

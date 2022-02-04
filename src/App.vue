@@ -7,14 +7,19 @@
     >
       VUE TODO APP
     </h1>
-    <form class="mt-8 mb-6">
+    <form @submit.prevent="addTodo" class="mt-8 mb-6">
       <div class="flex space-x-2">
         <input
           type="text"
           class="bg-gray-600 flex-1 rounded-md px-4 py-2 text-sm"
           placeholder="Type your todo"
+          v-model="newTodo"
+          autofocus
         />
-        <button class="bg-green-700 px-4 py-1.5 rounded-md text-sm">
+        <button
+          type="submit"
+          class="bg-green-700 px-4 py-1.5 rounded-md text-sm"
+        >
           Add Todo
         </button>
       </div>
@@ -30,6 +35,7 @@ export default {
   components: { Todos },
   data() {
     return {
+      newTodo: "",
       todos: [
         {
           activity: "Todo 1",
@@ -49,6 +55,13 @@ export default {
   computed: {
     totalTodo() {
       return this.todos.length;
+    },
+  },
+  methods: {
+    addTodo() {
+      this.todos.push({ activity: this.newTodo, isDone: false });
+      console.log(this.todos);
+      this.newTodo = "";
     },
   },
 };
