@@ -1,20 +1,55 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
-
 <template>
-  <h1 class="text-3xl font-bold">Hello World</h1>
+  <div
+    class="bg-gray-800 px-4 py-2 shadow-lg my-6 w-full rounded-md md:w-1/2 text-white"
+  >
+    <h1
+      class="text-4xl text-center font-extrabold bg-gradient-to-r from-blue-500 via-green-500 to-cyan-500 bg-clip-text text-transparent"
+    >
+      VUE TODO APP
+    </h1>
+    <form class="mt-8 mb-6">
+      <div class="flex space-x-2">
+        <input
+          type="text"
+          class="bg-gray-600 flex-1 rounded-md px-4 py-2 text-sm"
+          placeholder="Type your todo"
+        />
+        <button class="bg-green-700 px-4 py-1.5 rounded-md text-sm">
+          Add Todo
+        </button>
+      </div>
+    </form>
+    <!-- <div class="w-full border border-white mb-6"></div> -->
+    <Todos :todos="todos" :totalTodo="totalTodo" />
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<script>
+import Todos from "./components/Todos.vue";
+export default {
+  components: { Todos },
+  data() {
+    return {
+      todos: [
+        {
+          activity: "Todo 1",
+          isDone: false,
+        },
+        {
+          activity: "Todo 2",
+          isDone: false,
+        },
+        {
+          activity: "Todo 3",
+          isDone: true,
+        },
+      ],
+    };
+  },
+  computed: {
+    totalTodo() {
+      return this.todos.length;
+    },
+  },
+};
+</script>
