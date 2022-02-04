@@ -1,5 +1,5 @@
 <template>
-  <ul class="divide-y divide-gray-400">
+  <ul class="divide-y divide-gray-400 mb-8">
     <Todo
       v-for="(todo, index) in todos"
       :key="index"
@@ -9,8 +9,8 @@
       @toggleDone="toggleDone(index)"
     />
   </ul>
-  <div class="mt-3">
-    <p class="text-right text-sm text-gray-400">
+  <div>
+    <p class="text-right text-xs text-gray-400">
       You have {{ totalTodo }} pending task
     </p>
   </div>
