@@ -6,6 +6,7 @@
       :todo="todo"
       :index="index"
       @removeTodo="removeTodo(index)"
+      @toggleDone="toggleDone(index)"
     />
   </ul>
   <div class="mt-3">
@@ -19,7 +20,7 @@
 import Todo from "./Todo.vue";
 export default {
   components: { Todo },
-  emits: ["removeTodo"],
+  emits: ["removeTodo", "toggleDone"],
   props: {
     todos: Array,
     totalTodo: Number,
@@ -27,6 +28,9 @@ export default {
   methods: {
     removeTodo(todoIndex) {
       this.$emit("removeTodo", todoIndex);
+    },
+    toggleDone(todoIndex) {
+      this.$emit("toggleDone", todoIndex);
     },
   },
 };

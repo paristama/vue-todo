@@ -1,11 +1,12 @@
 <template>
-  <li class="py-3 flex">
+  <li class="py-2 flex">
     <div class="ml-3 w-full flex justify-between items-center">
       <p
         :class="[
           'text-sm flex-1 cursor-pointer',
-          { 'line-through': todo.isDone },
+          { 'line-through text-gray-600': todo.isDone },
         ]"
+        @click="toggleDone(index)"
       >
         {{ todo.activity }}
       </p>
@@ -30,6 +31,9 @@ export default {
   methods: {
     removeTodo(todoIndex) {
       this.$emit("removeTodo", todoIndex);
+    },
+    toggleDone(todoIndex) {
+      this.$emit("toggleDone", todoIndex);
     },
   },
 };

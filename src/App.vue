@@ -25,7 +25,12 @@
       </div>
     </form>
     <!-- <div class="w-full border border-white mb-6"></div> -->
-    <Todos :todos="todos" :totalTodo="totalTodo" @removeTodo="removeTodo" />
+    <Todos
+      :todos="todos"
+      :totalTodo="totalTodo"
+      @removeTodo="removeTodo"
+      @toggleDone="toggleDone"
+    />
   </div>
 </template>
 
@@ -36,20 +41,7 @@ export default {
   data() {
     return {
       newTodo: "",
-      todos: [
-        {
-          activity: "Todo 1",
-          isDone: false,
-        },
-        {
-          activity: "Todo 2",
-          isDone: false,
-        },
-        {
-          activity: "Todo 3",
-          isDone: true,
-        },
-      ],
+      todos: [],
     };
   },
   computed: {
@@ -64,6 +56,11 @@ export default {
     },
     removeTodo(todoIndex) {
       this.todos.splice(todoIndex, 1);
+    },
+    toggleDone(todoIndex) {
+      this.todos.forEach((todo, index) => {
+        if (index === todoIndex) todo.isDone = !todo.isDone;
+      });
     },
   },
 };
