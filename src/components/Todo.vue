@@ -11,6 +11,7 @@
       </p>
       <button
         class="text-gray-500 p-1.5 cursor-pointer rounded-full hover:bg-red-300 hover:text-red-500"
+        @click="removeTodo(index)"
       >
         <TrashIcon class="h-5 w-5" />
       </button>
@@ -24,6 +25,12 @@ export default {
   components: { TrashIcon },
   props: {
     todo: Object,
+    index: Number,
+  },
+  methods: {
+    removeTodo(todoIndex) {
+      this.$emit("removeTodo", todoIndex);
+    },
   },
 };
 </script>

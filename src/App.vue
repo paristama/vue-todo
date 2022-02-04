@@ -25,7 +25,7 @@
       </div>
     </form>
     <!-- <div class="w-full border border-white mb-6"></div> -->
-    <Todos :todos="todos" :totalTodo="totalTodo" />
+    <Todos :todos="todos" :totalTodo="totalTodo" @removeTodo="removeTodo" />
   </div>
 </template>
 
@@ -60,8 +60,10 @@ export default {
   methods: {
     addTodo() {
       this.todos.push({ activity: this.newTodo, isDone: false });
-      console.log(this.todos);
       this.newTodo = "";
+    },
+    removeTodo(todoIndex) {
+      this.todos.splice(todoIndex, 1);
     },
   },
 };
