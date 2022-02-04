@@ -28,18 +28,27 @@
     <Todos
       :todos="todos"
       :totalTodo="totalTodo"
-      @removeTodo="removeTodo"
+      @showModal="showModal"
       @toggleDone="toggleDone"
     />
   </div>
+  <Modal
+    :model-value="open"
+    @update:model-value="open = $event"
+    :todo="selectedTodo"
+    @removeTodo="removeTodo"
+  />
 </template>
 
 <script>
 import Todos from "./components/Todos.vue";
+import Modal from "./components/Modal.vue";
 export default {
-  components: { Todos },
+  components: { Todos, Modal },
   data() {
     return {
+      selectedTodo: {},
+      open: false,
       newTodo: "",
       todos: [],
     };
@@ -73,6 +82,10 @@ export default {
     },
     saveTodosLocalStorage() {
       localStorage.setItem("todos", JSON.stringify(this.todos));
+    },
+    showModal(data) {
+      this.selectedTodo = { index: data, ...this.todos[data] };
+      this.open = true;
     },
   },
 };

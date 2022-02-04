@@ -5,7 +5,7 @@
       :key="index"
       :todo="todo"
       :index="index"
-      @removeTodo="removeTodo(index)"
+      @showModal="showModal(index)"
       @toggleDone="toggleDone(index)"
     />
   </ul>
@@ -20,14 +20,14 @@
 import Todo from "./Todo.vue";
 export default {
   components: { Todo },
-  emits: ["removeTodo", "toggleDone"],
+  emits: ["showModal", "toggleDone"],
   props: {
     todos: Array,
     totalTodo: Number,
   },
   methods: {
-    removeTodo(todoIndex) {
-      this.$emit("removeTodo", todoIndex);
+    showModal(todoIndex) {
+      this.$emit("showModal", todoIndex);
     },
     toggleDone(todoIndex) {
       this.$emit("toggleDone", todoIndex);
