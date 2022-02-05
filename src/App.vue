@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray-800 px-4 py-10 shadow-lg my-6 w-full rounded-md md:max-w-lg text-white"
+    class="bg-gray-800 px-4 py-10 shadow-lg my-6 w-full rounded-md md:max-w-lg text-white max-h-full flex flex-col"
   >
     <h1
       class="text-4xl py-10 text-center font-extrabold bg-gradient-to-r from-blue-500 via-green-500 to-cyan-500 bg-clip-text text-transparent"
@@ -11,7 +11,7 @@
       <div class="flex space-x-2">
         <input
           type="text"
-          class="bg-gray-600 flex-1 rounded-md px-4 py-2 text-sm focus:bg-white focus:text-black focus-visible:outline-green-500"
+          class="bg-gray-700 flex-1 rounded-md px-4 py-2 text-sm focus:bg-gray-800 focus:placeholder:text-gray-600"
           placeholder="Type a new todo"
           v-model="newTodo"
           autofocus
@@ -24,12 +24,13 @@
         </button>
       </div>
     </form>
-    <!-- <div class="w-full border border-white mb-6"></div> -->
+    <Search :todos="todos" :todoList="todoList" />
     <Todos
       :todos="todos"
       :totalTodo="totalTodo"
       @showModal="showModal"
       @toggleDone="toggleDone"
+      v-model="todoList"
     />
   </div>
   <Modal
@@ -43,14 +44,16 @@
 <script>
 import Todos from "./components/Todos.vue";
 import Modal from "./components/Modal.vue";
+import Search from "./components/Search.vue";
 export default {
-  components: { Todos, Modal },
+  components: { Todos, Modal, Search },
   data() {
     return {
       selectedTodo: {},
       open: false,
       newTodo: "",
       todos: [],
+      todoList: {},
     };
   },
   mounted() {
