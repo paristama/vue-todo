@@ -64,7 +64,12 @@
                                         <p class="text-sm text-gray-100">
                                             Do you really want to delete todo
                                             "<strong>{{ todo.activity }}</strong
-                                            >"? This process cannot be undone
+                                            >"?
+                                        </p>
+                                        <p
+                                            class="text-sm text-gray-100 italic mt-2"
+                                        >
+                                            This process cannot be undone.
                                         </p>
                                     </div>
                                 </div>
